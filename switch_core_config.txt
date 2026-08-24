@@ -1,0 +1,43 @@
+! --------------------------------------------------------
+! Fichier de configuration : Switch Core (Cisco IOS)
+! Projet : Deploiement Client HTS - Bouira
+! Auteur : Amine Boukherroubi
+! --------------------------------------------------------
+
+enable
+configure terminal
+
+! 1. CREATION DES VLANS
+vlan 10
+ name DATA_ADMIN
+vlan 20
+ name VOIP_NETWORK
+vlan 30
+ name CCTV_SECURE
+exit
+
+! 2. CONFIGURATION DU PORT TRUNK (Vers Routeur)
+interface GigabitEthernet0/24
+ description LIEN_VERS_FIREWALL
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30
+exit
+
+! 3. CONFIGURATION POSTE DE TRAVAIL + TELEPHONE IP (QoS)
+interface GigabitEthernet0/5
+ description BUREAU_ADMINISTRATION
+ switchport mode access
+ switchport access vlan 10
+ switchport voice vlan 20
+ auto qos voip cisco-phone
+ spanning-tree portfast
+exit
+
+! 4. CONFIGURATION CAMERA IP (PoE)
+interface GigabitEthernet0/12
+ description CAMERA_PARKING_EXT
+ switchport mode access
+ switchport access vlan 30
+ power inline auto
+exit
