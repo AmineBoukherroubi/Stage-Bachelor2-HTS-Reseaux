@@ -1,0 +1,30 @@
+{
+  "Device": {
+    "Manufacturer": "Hikvision",
+    "Model": "DS-2CD2386G2-I",
+    "FirmwareVersion": "V5.5.111"
+  },
+  "NetworkSettings": {
+    "IPAddress": "192.168.30.15",
+    "SubnetMask": "255.255.255.0",
+    "DefaultGateway": "192.168.30.1",
+    "PrimaryDNS": "192.168.10.1",
+    "PortSettings": {
+      "HTTPPort": 80,
+      "RTSPPort": 554,
+      "ServerPort": 8000
+    }
+  },
+  "VideoSettings": {
+    "StreamType": "MainStream",
+    "VideoCodec": "H.265+",
+    "Resolution": "1920x1080",
+    "FrameRate": 25,
+    "BitrateType": "Variable",
+    "MaxBitrate": 4096,
+    "EventDetection": {
+      "MotionDetection": true,
+      "LineCrossing": true
+    }
+  }
+}
